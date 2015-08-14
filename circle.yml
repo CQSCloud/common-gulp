@@ -13,3 +13,4 @@ checkout:
 dependencies:
   pre:
     - npm install -g gulp
+    - npm install babel-core
