@@ -13,7 +13,7 @@ Utility functions
 
     // download & install bower packages
     gulp.task('bower', function() {
-      // co configuration, used bower/ & .bowerrc
+      // use 'bower' directory when none supplied
       return common.bower();
     });
 
@@ -55,7 +55,7 @@ linting
 
     // js linting
     gulp.task('lint-js-server', function() {
-      // source array, eslint options
+      // source array, eslint options (optional)
       return common.jslint([PATHS.js.server], JSLINTOPTS.NODE);
     });
 
