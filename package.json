@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "preinstall": "npm install babel-core",
     "postinstall": "gulp default",
-    "test": "gulp test"
+    "test": "gulp default && gulp test"
   },
   "dependencies": {
     "babel": "^5.8.21",
