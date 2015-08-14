@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "preinstall": "npm install babel-core",
-    "postinstall": "gulp default"
+    "postinstall": "gulp default",
+    "test": "gulp test"
   },
   "dependencies": {
     "babel": "^5.8.21",
