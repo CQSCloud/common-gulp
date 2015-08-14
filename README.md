@@ -11,9 +11,14 @@ A set of gulp helpers that simplify the creation of a Gulpfile significantly.
       return common.coverage.merge();
     });
 
-    // babel compilation
+    // jade compilation
+    gulp.task('html', function() {
+      common.jade.compile('dist/public/', [PATHS.jade]);
+    });
+
+    // js compilation (via babel)
     gulp.task('js-server', function() {
-      common.js.compile('.', [PATHS.js.server]);
+      common.js.compile('dist/', [PATHS.js.server]);
     });
 
     // js linting

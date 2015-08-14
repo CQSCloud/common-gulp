@@ -7,6 +7,7 @@ const mocha = require('./gulp/mocha');
 
 module.exports = {
   coverage: coverage,
+  jade: jade,
   js: js,
   jslint: jslint,
   mocha: mocha
