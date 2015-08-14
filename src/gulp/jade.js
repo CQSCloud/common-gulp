@@ -6,7 +6,7 @@ const newer = require('gulp-newer');
 
 const errcb = require('../helpers').errcb;
 
-var compile = function(dest, src) {
+const compile = function(dest, src) {
   return gulp.src(src)
     .pipe(newer({
       dest: dest,
