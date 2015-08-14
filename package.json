@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "install": "node_modules/.bin/gulp default"
+    "postinstall": "gulp default"
   },
   "dependencies": {
     "babel": "^5.8.21",
