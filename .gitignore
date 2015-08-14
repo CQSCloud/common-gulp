@@ -17,3 +17,7 @@ temp.js
 !*/index.js
 gulp/
 !*/gulp/
+helpers/
+!*/helpers/
+reporters/
+!*/reporters/
