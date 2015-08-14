@@ -6,7 +6,12 @@ A set of gulp helpers that simplify the creation of a Gulpfile significantly.
 
     const common = require('common-gulp');
 
-    // coverage merger
+    // copy package.json to dist
+    gulp.task('packagejson', function() {
+      return common.copy.copy('dist/', ['package.json']);
+    });
+
+    // combine all lcov into lconv.info
     gulp.task('coverage', function() {
       return common.coverage.merge();
     });
