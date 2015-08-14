@@ -1,0 +1,11 @@
+machine:
+  node:
+    version:
+      0.12.6
+
+checkout:
+  post:
+    - git fetch
+    - git config --global user.email "development@cqscloud.com"
+    - git config --global user.name "development"
+    - git merge --no-edit origin/development
