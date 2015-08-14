@@ -11,6 +11,12 @@ Require the module in your Gulpfile
 
 Utility functions
 
+    // download & install bower packages
+    gulp.task('bower', function() {
+      // co configuration, used bower/ & .bowerrc
+      return common.bower();
+    });
+
     // copy package.json to dist
     gulp.task('packagejson', function() {
       // destination file/folder, source array
@@ -35,7 +41,7 @@ testing infrastructure
     // karma tests
     gulp.task('test-client', function() {
       // no config, uses karma.conf.js in project root
-      common.karma();
+      return common.karma();
     });
 
     // mocha tests
@@ -50,7 +56,7 @@ linting
     // js linting
     gulp.task('lint-js-server', function() {
       // source array, eslint options
-      common.jslint([PATHS.js.server], JSLINTOPTS.NODE);
+      return common.jslint([PATHS.js.server], JSLINTOPTS.NODE);
     });
 
 
@@ -59,7 +65,7 @@ compilation
     // jade compilation
     gulp.task('html', function() {
       // destination folder, source array
-      common.jade('dist/public/', [PATHS.jade]);
+      return common.jade('dist/public/', [PATHS.jade]);
     });
 
     // angular js compilation (via babel, annotate & uglify)
@@ -71,5 +77,5 @@ compilation
     // node js compilation (via babel)
     gulp.task('js-server', function() {
       // destination folder, source array
-      common.jsnode('dist/', [PATHS.js.server]);
+      return common.jsnode('dist/', [PATHS.js.server]);
     });
