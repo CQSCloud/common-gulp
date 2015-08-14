@@ -36,6 +36,5 @@ module.exports = {
   isTest: isTest,
   isProd: isProd,
   errcb: errcb,
-  exitcb: exitcb,
-  paths: paths
+  exitcb: exitcb
 };
