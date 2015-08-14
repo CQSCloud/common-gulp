@@ -23,6 +23,7 @@
     "isparta": "^3.0.3",
     "lcov-result-merger": "^1.0.2",
     "mkdirp": "^0.5.1",
+    "mocha": "^2.2.5",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.2"
   },
