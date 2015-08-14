@@ -6,8 +6,9 @@ const newer = require('gulp-newer');
 
 const errcb = require('../helpers').errcb;
 
-const compile = function(dest, src) {
-  return gulp.src(src)
+module.exports = function(dest, src) {
+  return gulp
+    .src(src)
     .pipe(newer({
       dest: dest,
       ext: '.html'
@@ -15,8 +16,4 @@ const compile = function(dest, src) {
     .pipe(jade())
     .on('error', errcb)
     .pipe(gulp.dest(dest));
-};
-
-module.exports = {
-  compile: compile
 };

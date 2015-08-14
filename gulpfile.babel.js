@@ -3,32 +3,33 @@
 const gulp = require('gulp');
 const serial = require('run-sequence');
 
-const coverMerge = require('./src/gulp/coverage').merge;
-const compileJs = require('./src/gulp/js').compile;
-const lintJs = require('./src/gulp/jslint').lint;
-const testMocha = require('./src/gulp/mocha').test;
+const common = require('./src');
 
 const SRC = ['src/**/*.js'];
 const DEST = '.';
 
 gulp.task('coverage', function() {
-  return coverMerge();
+  return common.coverage();
 });
 
 gulp.task('js', function() {
-  return compileJs(DEST, SRC);
+  return common.jsnode(DEST, SRC);
 });
 
 gulp.task('lint', function() {
-  return lintJs(SRC);
+  return common.jslint(SRC);
+});
+
+gulp.task('test-client', function(cb) {
+  return common.karma();
 });
 
 gulp.task('test-server', function(cb) {
-  return testMocha(cb, ['src/**/*.js'], ['spec/server/*.spec.js']);
+  return common.mocha(cb, ['src/**/*.js'], ['spec/server/*.spec.js']);
 });
 
 gulp.task('test', function(cb) {
-  return serial('test-server', 'coverage', cb);
+  return serial('test-server', 'test-client', 'coverage', cb);
 });
 
 gulp.task('default', ['lint', 'js']);

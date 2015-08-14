@@ -1,15 +1,14 @@
 'use strict';
 
-const coverage = require('./gulp/coverage');
-const js = require('./gulp/js');
-const jslint = require('./gulp/jslint');
-const mocha = require('./gulp/mocha');
-
 module.exports = {
-  copy: copy,
-  coverage: coverage,
-  jade: jade,
-  js: js,
-  jslint: jslint,
-  mocha: mocha
+  bower: require('./gulp/bower'),
+  copy: require('./gulp/copy'),
+  coverage: require('./gulp/coverage'),
+  jade: require('./gulp/jade'),
+  jsangular: require('./gulp/jsangular'),
+  jsconcat: require('./gulp/jsconcat'),
+  jslint: require('./gulp/jslint'),
+  jsnode: require('./gulp/jsnode'),
+  karma: require('./gulp/karma'),
+  mocha: require('./gulp/mocha')
 };

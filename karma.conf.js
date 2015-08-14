@@ -7,9 +7,6 @@ module.exports = function(config) {
     basePath: './',
 
     files: [
-      'bower/angular/angular.js',
-      'bower/angular-route/angular-route.js',
-      'src/client/**/*.js',
       'spec/client/**/*.spec.js'
     ],
 
@@ -19,7 +16,7 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-phantomjs-launcher',
       'karma-chai-plugins',
-      require('shared-mocha-karma-reporter').karma
+      require('./reporters').karma
     ],
 
     frameworks: [
@@ -40,7 +37,6 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/*.js': ['babel', 'coverage'],
       'spec/**/*.js': ['babel']
     },
 
