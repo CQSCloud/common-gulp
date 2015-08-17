@@ -5,7 +5,7 @@ const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
 const isparta = require('isparta');
 
-const babel = require('babel/register');
+const babel = require('babel-core/register');
 const reporter = require('../reporters').mocha;
 
 const {exitcb} = require('../helpers');
