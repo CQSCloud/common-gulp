@@ -5,10 +5,10 @@
   "scripts": {
     "postinstall": "gulp default",
     "test": "gulp default && gulp test",
-    "install-globals": "npm install -g gulp babel-core@5.8.22"
+    "install-globals": "npm install -g gulp babel@5.8.21"
   },
   "dependencies": {
-    "babel-core": "*",
+    "babel-core": "5.8.21",
     "babel-eslint": "^4.0.5",
     "eslint": "^1.1.0",
     "eslint-config-airbnb": "0.0.7",
