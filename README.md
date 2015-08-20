@@ -48,7 +48,7 @@ testing infrastructure
     // mocha tests
     gulp.task('test-server', function(cb) {
       // done callback, source array, spec array
-      return common.mocha(cb, [PATHS.js.server], [PATHS.spec.server]);
+      common.mocha(cb, [PATHS.js.server], [PATHS.spec.server]);
     });
 
 
