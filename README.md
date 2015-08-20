@@ -8,6 +8,7 @@ Require the module in your Gulpfile
 
     const common = require('common-gulp');
 
+A number of default tasks are defined, these are visible in the `index.js` file. If you need to customise or override, the actual modules are exposed on exports.
 
 Utility functions
 
