@@ -83,9 +83,9 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 });
 
 gulp.task('js-vendor', ['bower'], function() {
-  const bowersrc = require('./bower.json');
-  const src = _.forEach(bowersrc.dependencies, function(ver, dep) {
-    const depsrc = require(`bower/${dep}/bower.json`);
+  const bowersrc = require('../../bower.json');
+  const src = _.map(bowersrc.dependencies, function(ver, dep) {
+    const depsrc = require(`../../bower/${dep}/bower.json`);
     return `bower/${dep}/${depsrc.main}`;
   });
 
