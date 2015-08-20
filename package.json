@@ -32,6 +32,7 @@
     "isparta": "^3.0.3",
     "karma": "^0.12.37",
     "lcov-result-merger": "^1.0.2",
+    "lodash": "^3.10.1",
     "mocha": "^2.2.5",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.2"

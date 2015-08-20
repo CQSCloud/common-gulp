@@ -5,10 +5,11 @@ const concat = require('gulp-concat');
 const gulpif = require('gulp-if');
 const newer = require('gulp-newer');
 const uglify = require('gulp-uglify');
+const _ = require('lodash');
 
 const isProd = require('../helpers').isProd;
 
-module.exports = function(file, dest, src) {
+const run = function(file, dest, src) {
   return gulp
     .src(src)
     .pipe(newer('' + dest + file))
@@ -16,3 +17,15 @@ module.exports = function(file, dest, src) {
     .pipe(concat(file))
     .pipe(gulp.dest(dest));
 };
+
+gulp.task('js-vendor', ['bower'], function() {
+  const bowersrc = require('./bower.json');
+  const src = _.forEach(bowersrc.dependencies, function(ver, dep) {
+    const depsrc = require(`bower/${dep}/bower.json`);
+    return `bower/${dep}/${depsrc.main}`;
+  });
+
+  return run('vendor.js', 'dist/public/scripts/', src);
+});
+
+module.exports = run;
