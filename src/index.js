@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const del = require('del');
 const _ = require('lodash');
 const serial = require('run-sequence');
 
@@ -19,6 +20,10 @@ const common = {
 
 gulp.task('bower', function() {
   return common.bower();
+});
+
+gulp.task('clean', function(cb) {
+  return del(['coverage', 'dist'], cb);
 });
 
 gulp.task('copy-package.json', function() {
@@ -41,20 +46,40 @@ gulp.task('jslint-client-spec', function() {
   return common.jslint(['spec/client/**/*.js']);
 });
 
+gulp.task('jslint-database', function() {
+  return common.jslint(['src/database/**/*.js']);
+});
+
 gulp.task('jslint-server', function() {
-  return common.jslint(['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js']);
+  return common.jslint(['src/server/scripts/**/*.js']);
 });
 
 gulp.task('jslint-server-spec', function() {
-  return common.jslint(['spec/server/**/*.js', 'spec/shared/**/*.js']);
+  return common.jslint(['spec/server/**/*.js']);
+});
+
+gulp.task('jslint-shared', function() {
+  return common.jslint(['src/shared/scripts/**/*.js']);
+});
+
+gulp.task('jslint-shared-spec', function() {
+  return common.jslint(['spec/shared/**/*.js']);
 });
 
 gulp.task('js-client', ['jslint-client'], function() {
   return common.jsangular('client.js', 'dist/public/scripts/', ['src/client/scripts/**/*.js', 'src/shared/scripts/**/*.js']);
 });
 
+gulp.task('js-database', ['jslint-database'], function() {
+  return common.jsnode('dist/database/', ['src/database/**/*.js']);
+});
+
 gulp.task('js-server', ['jslint-server'], function() {
-  return common.jsnode('dist/', ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js']);
+  return common.jsnode('dist/', ['src/server/scripts/**/*.js']);
+});
+
+gulp.task('js-shared', ['jslint-shared'], function() {
+  return common.jsnode('dist/shared/', ['src/shared/scripts/**/*.js']);
 });
 
 gulp.task('js-vendor', ['bower'], function() {
@@ -71,8 +96,8 @@ gulp.task('test-client', ['jslint-client-spec'], function() {
   return common.karma();
 });
 
-gulp.task('test-server', ['jslint-server-spec'], function(cb) {
-  return common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
+gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(cb) {
+  common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
 });
 
 gulp.task('test', function(cb) {
