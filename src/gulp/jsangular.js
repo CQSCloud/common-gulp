@@ -11,7 +11,7 @@ const uglify = require('gulp-uglify');
 
 const isProd = require('../helpers').isProd;
 
-const run = function(file, dest, src) {
+module.exports = function(file, dest, src) {
   return gulp
     .src(src)
     .pipe(newer('' + dest + file))
@@ -26,9 +26,3 @@ const run = function(file, dest, src) {
     })))
     .pipe(gulp.dest(dest));
 };
-
-gulp.task('js-client', ['jslint-client'], function() {
-  return run('client.js', 'dist/public/scripts/', ['src/client/scripts/**/*.js', 'src/shared/scripts/**/*.js']);
-});
-
-module.exports = run;

@@ -6,7 +6,7 @@ const newer = require('gulp-newer');
 
 const errcb = require('../helpers').errcb;
 
-const run = function(dest, src) {
+module.exports = function(dest, src) {
   return gulp
     .src(src)
     .pipe(newer({
@@ -17,9 +17,3 @@ const run = function(dest, src) {
     .on('error', errcb)
     .pipe(gulp.dest(dest));
 };
-
-gulp.task('html-client', function() {
-  return run('dist/public/', ['src/client/views/**/*.jade']);
-});
-
-module.exports = run;

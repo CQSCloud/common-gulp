@@ -5,7 +5,7 @@ const karma = require('gulp-karma');
 
 const exitcb = require('../helpers').exitcb;
 
-const run = function() {
+module.exports = function() {
   return gulp
     .src([])
     .pipe(karma({
@@ -14,9 +14,3 @@ const run = function() {
     }))
     .on('error', exitcb);
 };
-
-gulp.task('test-client', ['jslint-client-spec'], function() {
-  return run();
-});
-
-module.exports = run;

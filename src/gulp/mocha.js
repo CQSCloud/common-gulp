@@ -8,9 +8,9 @@ const isparta = require('isparta');
 const babel = require('babel-core/register');
 const reporter = require('../reporters').mocha;
 
-const exitcb = require('../helpers');
+const {exitcb} = require('../helpers');
 
-const run = function(cb, src, spec) {
+module.exports = function(cb, src, spec) {
   process.env.NODE_ENV = 'test';
 
   gulp
@@ -41,9 +41,3 @@ const run = function(cb, src, spec) {
     })
     .on('error', exitcb);
 };
-
-gulp.task('test-server', ['jslint-server-spec'], function(cb) {
-  return run(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
-});
-
-module.exports = run;

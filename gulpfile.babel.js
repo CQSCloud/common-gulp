@@ -1,23 +1,14 @@
 'use strict';
 
 const gulp = require('gulp');
-const serial = require('run-sequence');
-
 const common = require('./src');
 
-const SRC = ['src/**/*.js'];
-const DEST = '.';
-
 gulp.task('lint', function() {
-  return common.jslint(SRC);
+  return common.jslint(['src/**/*.js']);
 });
 
 gulp.task('js', ['lint'], function() {
-  return common.jsnode(DEST, SRC);
-});
-
-gulp.task('test', function(cb) {
-  return serial('test-server', 'test-client', 'coverage', cb);
+  return common.jsnode('.', ['src/**/*.js']);
 });
 
 gulp.task('default', ['lint', 'js']);
