@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const del = require('del');
 const _ = require('lodash');
 const serial = require('run-sequence');
+const path = require('path');
 
 const common = {
   bower: require('./gulp/bower'),
@@ -88,10 +89,10 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 });
 
 gulp.task('js-vendor', ['bower'], function() {
-  const bowersrc = require('../../bower.json');
-  const src = _.map(bowersrc.dependencies, function(ver, dep) {
-    const depsrc = require(`../../bower/${dep}/bower.json`);
-    return `bower/${dep}/${depsrc.main}`;
+  const brc = require(path.join(process.cwd(), 'bower.json'));
+  const src = _.map(brc.dependencies, function(ver, dep) {
+    const prc = require(path.join(process.cwd(), 'bower', dep, 'bower.json'));
+    return path.join('bower', dep, prc.main);
   });
 
   return common.jsconcat('vendor.js', 'dist/public/scripts/', src);
