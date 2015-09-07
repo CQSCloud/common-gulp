@@ -93,26 +93,26 @@ gulp.task('js-vendor', ['bower'], function() {
   const bowersrc = _.map(bowerrc.dependencies, function(ver, dep) {
     const pkgsrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
     if (_.isArray(pkgsrc)) {
-      for (let i = 0; i < pkgsrc.length; i++) {
-        if (/\.js$/.test(pkgsrc[i])) {
-          return path.join('bower', dep, pkgsrc[i]);
-        }
-      }
+      return _.map(pkgsrc, function(s) {
+        return path.join('bower', dep, s);
+      });
     } else {
       return path.join('bower', dep, pkgsrc);
     }
   });
 
   const src = [];
-  _.forEach(bowersrc, function(s) {
-    if (/jquery/.test(s)) {
-      src.unshift(s);
-    } else {
-      src.push(s);
+  _.forEach(_.flatten(bowersrc), function(s) {
+    if (/\.js$/.test(s)) {
+      if (/jquery/.test(s)) {
+        src.unshift(s);
+      } else {
+        src.push(s);
+      }
     }
   });
 
-  console.error(src);
+  console.error(bowersrc, src);
 
   return common.jsconcat('vendor.js', 'dist/public/scripts/', src);
 });
@@ -122,7 +122,7 @@ gulp.task('test-client', ['jslint-client-spec'], function() {
 });
 
 gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(cb) {
-  common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
+  return common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
 });
 
 gulp.task('test', function(cb) {
