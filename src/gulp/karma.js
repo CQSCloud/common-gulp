@@ -4,8 +4,13 @@ const path = require('path');
 const karma = require('karma');
 
 module.exports = function(done) {
-  new karma.Server({
+  const server = new karma.Server({
     configFile: path.join(process.cwd(), 'karma.conf.js'),
     singleRun: true
-  }, done).start();
+  }, function(exitCode) {
+    console.log(`Karma has exited with ${exitCode}`)
+    done();
+  });
+
+  server.start();
 };
