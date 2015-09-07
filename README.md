@@ -2,7 +2,7 @@
 
 A set of gulp helpers that simplify the creation of a Gulpfile significantly.
 
-### usage
+## usage
 
 Require the module in your Gulpfile
 
@@ -10,7 +10,7 @@ Require the module in your Gulpfile
 
 A number of default tasks are defined, these are visible in the `index.js` file. If you need to customise or override, the actual modules are exposed on exports.
 
-Utility functions
+### utility functions
 
     // download & install bower packages
     gulp.task('bower', function() {
@@ -21,17 +21,17 @@ Utility functions
     // copy package.json to dist
     gulp.task('packagejson', function() {
       // destination file/folder, source array
-      return common.copy('dist/', ['package.json']);
+      return common.copy('dist/, ['package.json']);
     });
 
     // concat & minify js files
-    gulp.tasks('vendor', function() {
+    gulp.task('vendor', function() {
       // destination file, destination folder, source array
-      return common.jsconcat('vendor.js', 'dist/', [PATHS.bower]);
+      return common.jsconcat('vendor.js, 'dist/, [PATHS.bower]);
     });
 
 
-testing infrastructure
+### testing infrastructure
 
     // combine all lcov into lconv.info
     gulp.task('coverage', function() {
@@ -52,7 +52,13 @@ testing infrastructure
     });
 
 
-linting
+### linting
+
+    // jade linting
+    gulp.task('lint-jade', function() {
+      // source array
+      return common.jslint([PATHS.jade.client]);
+    });
 
     // js linting
     gulp.task('lint-js-server', function() {
@@ -61,22 +67,27 @@ linting
     });
 
 
-compilation
+### compilation
 
     // jade compilation
     gulp.task('html', function() {
       // destination folder, source array
-      return common.jade('dist/public/', [PATHS.jade]);
+      return common.jade('dist/public/, [PATHS.jade]);
     });
 
     // angular js compilation (via babel, annotate & uglify)
     gulp.task('js-client', function() {
       // destination file, destination folder, source array
-      return common.jsangular('client.js', 'dist/public/scripts/', [PATHS.js.client]);
+      return common.jsangular('client.js, 'dist/public/scripts/, [PATHS.js.client]);
     });
 
     // node js compilation (via babel)
     gulp.task('js-server', function() {
       // destination folder, source array
-      return common.jsnode('dist/', [PATHS.js.server]);
+      return common.jsnode('dist/, [PATHS.js.server]);
     });
+
+
+## tasks exposed by default
+
+bower, clean, copy-package.json, coverage, jadelint-client, html-client, jslint-client, jslint-client-spec, jslint-database, jslint-server, jslint-server-spec, jslint-shared, jslint-shared-spec, js-client, js-database, js-server, js-shared, js-vendor, test-client, test-server, test
