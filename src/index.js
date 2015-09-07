@@ -111,8 +111,8 @@ gulp.task('js-vendor', ['bower'], function() {
   return common.jsconcat('vendor.js', 'dist/public/scripts/', src);
 });
 
-gulp.task('test-client', ['jslint-client-spec'], function() {
-  return common.karma();
+gulp.task('test-client', ['jslint-client-spec'], function(done) {
+  return common.karma(done);
 });
 
 gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(cb) {
