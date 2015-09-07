@@ -1,16 +1,11 @@
 'use strict';
 
-const gulp = require('gulp');
-const karma = require('gulp-karma');
+const path = require('path');
+const karma = require('karma');
 
-const exitcb = require('../helpers').exitcb;
-
-module.exports = function() {
-  return gulp
-    .src([])
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', exitcb);
+module.exports = function(done) {
+  new karma.Server({
+    configFile: path.join(process.cwd(), 'karma.conf.js'),
+    singleRun: true
+  }, done).start();
 };
