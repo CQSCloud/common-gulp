@@ -8,6 +8,7 @@ const newer = require('gulp-newer');
 const annotate = require('gulp-ng-annotate');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
+const path = require('path');
 
 const isProd = require('../helpers').isProd;
 
