@@ -92,9 +92,9 @@ gulp.task('js-vendor', ['bower'], function() {
   const bowerrc = require(path.join(process.cwd(), 'bower.json'));
   const src = _.map(bowerrc.dependencies, function(ver, dep) {
     const pkgsrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
-    if (_.isArray(psrc)) {
+    if (_.isArray(pkgsrc)) {
       for (let i = 0; i < pkgsrc.length; i++) {
-        if (/\.js$/.test(psrc[i])) {
+        if (/\.js$/.test(pkgsrc[i])) {
           return path.join('bower', dep, pkgsrc[i]);
         }
       }
