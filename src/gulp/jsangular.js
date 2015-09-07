@@ -16,7 +16,9 @@ module.exports = function(file, dest, src) {
     .src(src)
     .pipe(newer('' + dest + file))
     .pipe(gulpif(!isProd(), sourcemaps.init()))
-    .pipe(babel())
+    .pipe(babel({
+      babelrc: path.join(process.cwd(), '.babelrc')
+    }))
     .pipe(gulpif(isProd(), annotate()))
     .pipe(gulpif(isProd(), uglify()))
     .pipe(concat(file))
