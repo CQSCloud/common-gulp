@@ -10,6 +10,7 @@ const common = {
   copy: require('./gulp/copy'),
   coverage: require('./gulp/coverage'),
   jade: require('./gulp/jade'),
+  jadelint: require('./gulp/jadelint'),
   jsangular: require('./gulp/jsangular'),
   jsconcat: require('./gulp/jsconcat'),
   jslint: require('./gulp/jslint'),
@@ -34,7 +35,11 @@ gulp.task('coverage', function() {
   return common.coverage();
 });
 
-gulp.task('html-client', function() {
+gulp.task('jadelint-client', function() {
+  return common.jadelint(['src/client/views/**/*.jade']);
+});
+
+gulp.task('html-client', ['jadelint-client'], function() {
   return common.jade('dist/public/', ['src/client/views/**/*.jade']);
 });
 
