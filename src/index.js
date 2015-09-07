@@ -90,15 +90,11 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 
 gulp.task('js-vendor', ['bower'], function() {
   const bowerrc = require(path.join(process.cwd(), 'bower.json'));
-  const bowersrc = _.map(bowerrc.dependencies, function(ver, dep) {
-    const pkgsrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
-    if (_.isArray(pkgsrc)) {
-      return _.map(pkgsrc, function(s) {
-        return path.join('bower', dep, s);
-      });
-    } else {
-      return path.join('bower', dep, pkgsrc);
-    }
+  const bowersrc = _.map(bowerrc.dependencies, function(v, bowerdep) {
+    const main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
+    return _.map(_.isArray(main) ? main : [main], function(file) {
+      return path.join('bower', bowerdep, file);
+    });
   });
 
   const src = [];
@@ -111,8 +107,6 @@ gulp.task('js-vendor', ['bower'], function() {
       }
     }
   });
-
-  console.error(bowersrc, src);
 
   return common.jsconcat('vendor.js', 'dist/public/scripts/', src);
 });
