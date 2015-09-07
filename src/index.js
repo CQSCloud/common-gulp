@@ -91,15 +91,15 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 gulp.task('js-vendor', ['bower'], function() {
   const bowerrc = require(path.join(process.cwd(), 'bower.json'));
   const src = _.map(bowerrc.dependencies, function(ver, dep) {
-    const psrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
+    const pkgsrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
     if (_.isArray(psrc)) {
-      for (let i = 0; i < psrc.length; i++) {
-        if (/\.js$/.test(main[i])) {
-          return path.join('bower', dep, psrc[i]);
+      for (let i = 0; i < pkgsrc.length; i++) {
+        if (/\.js$/.test(psrc[i])) {
+          return path.join('bower', dep, pkgsrc[i]);
         }
       }
     } else {
-      return path.join('bower', dep, psrc);
+      return path.join('bower', dep, pkgsrc);
     }
   });
   console.error(src);
