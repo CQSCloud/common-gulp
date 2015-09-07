@@ -90,29 +90,23 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 
 gulp.task('js-vendor', ['bower'], function() {
   const bowerrc = require(path.join(process.cwd(), 'bower.json'));
-  const bowersrc = _.map(bowerrc.dependencies, function(ver, dep) {
-    const pkgsrc = require(path.join(process.cwd(), 'bower', dep, 'bower.json')).main;
-    if (_.isArray(pkgsrc)) {
-      for (let i = 0; i < pkgsrc.length; i++) {
-        if (/\.js$/.test(pkgsrc[i])) {
-          return path.join('bower', dep, pkgsrc[i]);
-        }
-      }
-    } else {
-      return path.join('bower', dep, pkgsrc);
-    }
+  const bowersrc = _.map(bowerrc.dependencies, function(v, bowerdep) {
+    const main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
+    return _.map(_.isArray(main) ? main : [main], function(file) {
+      return path.join('bower', bowerdep, file);
+    });
   });
 
   const src = [];
-  _.forEach(bowersrc, function(s) {
-    if (/jquery/.test(s)) {
-      src.unshift(s);
-    } else {
-      src.push(s);
+  _.forEach(_.flatten(bowersrc), function(s) {
+    if (/\.js$/.test(s)) {
+      if (/jquery/.test(s)) {
+        src.unshift(s);
+      } else {
+        src.push(s);
+      }
     }
   });
-
-  console.error(src);
 
   return common.jsconcat('vendor.js', 'dist/public/scripts/', src);
 });
@@ -122,7 +116,7 @@ gulp.task('test-client', ['jslint-client-spec'], function() {
 });
 
 gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(cb) {
-  common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
+  return common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
 });
 
 gulp.task('test', function(cb) {
