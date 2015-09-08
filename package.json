@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "postinstall": "gulp default",
-    "test": "gulp default && gulp test",
-    "install-globals": "npm install -g gulp babel@5.8.21"
+    "test": "gulp default && gulp test"
   },
   "dependencies": {
     "babel-core": "5.8.21",

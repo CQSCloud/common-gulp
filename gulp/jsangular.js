@@ -1,16 +1,16 @@
 'use strict';
 
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
-const gulpif = require('gulp-if');
-const newer = require('gulp-newer');
-const annotate = require('gulp-ng-annotate');
-const sourcemaps = require('gulp-sourcemaps');
-const uglify = require('gulp-uglify');
-const path = require('path');
+var gulp = require('gulp');
+var babel = require('gulp-babel');
+var concat = require('gulp-concat');
+var gulpif = require('gulp-if');
+var newer = require('gulp-newer');
+var annotate = require('gulp-ng-annotate');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var path = require('path');
 
-const isProd = require('../helpers').isProd;
+var isProd = require('../helpers').isProd;
 
 module.exports = function(file, dest, src) {
   return gulp

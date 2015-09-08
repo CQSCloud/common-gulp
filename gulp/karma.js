@@ -1,7 +1,7 @@
 'use strict';
 
-const path = require('path');
-const karma = require('karma');
+var path = require('path');
+var karma = require('karma');
 
 module.exports = function(done) {
   new karma.Server({

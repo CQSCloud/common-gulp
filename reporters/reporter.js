@@ -1,18 +1,17 @@
 'use strict';
 
 /* eslint no-console:0 */
-
-const WIN32 = process.platform === 'win32';
-const PREFIX = '  ';
-const SUITELEN = 28;
-const EOL = require('os').EOL;
-const SYMBOLS = {
+var WIN32 = process.platform === 'win32';
+var PREFIX = '  ';
+var SUITELEN = 28;
+var EOL = require('os').EOL;
+var SYMBOLS = {
   dot: '-',
   ok: WIN32 ? '\u221A' : '✓',
   err: WIN32 ? '\u00D7' : '✖'
 };
 
-const COLORS = {
+var COLORS = {
   'pass': 32,
   'fail': 31,
   'bright pass': 92,
@@ -34,19 +33,19 @@ const COLORS = {
   'diff removed': 41
 };
 
-const color = function(type, str) {
+var color = function(type, str) {
   return `\u001b[${COLORS[type]}m${str}\u001b[0m`;
 };
 
-const wrap = function(tick) {
+var wrap = function(tick) {
   return `${tick} `;
 };
 
-const newline = function(info) {
+var newline = function(info) {
   return process.stdout.write(`${EOL}${PREFIX}${color('medium', info || '')} `);
 };
 
-const log = function(stats, ch) {
+var log = function(stats, ch) {
   if (stats.prevSuite !== stats.suites[0]) {
     stats.prevSuite = stats.suites[0];
     newline(`                                  ${stats.prevSuite}`.slice(-SUITELEN));
@@ -57,7 +56,7 @@ const log = function(stats, ch) {
   }
 };
 
-const suiteStart = function(stats) {
+var suiteStart = function(stats) {
   return function(suite) {
     if (suite.title && suite.title.length) {
       stats.suites.push(suite.title);
@@ -65,7 +64,7 @@ const suiteStart = function(stats) {
   };
 };
 
-const suiteEnd = function(stats) {
+var suiteEnd = function(stats) {
   return function() {
     if (stats.suites.length) {
       stats.suites.pop();
@@ -73,7 +72,7 @@ const suiteEnd = function(stats) {
   };
 };
 
-const start = function(stats) {
+var start = function(stats) {
   return function() {
     stats.number = 0;
     stats.passed = 0;
@@ -87,13 +86,13 @@ const start = function(stats) {
   };
 };
 
-const pass = function(stats) {
+var pass = function(stats) {
   return function(test) {
     if (test.suite) {
       stats.suites = test.suite;
     }
 
-    const slow = test.speed === 'slow';
+    var slow = test.speed === 'slow';
 
     log(stats, wrap(color((slow ? 'slow' : 'pass'), SYMBOLS.ok)));
 
@@ -102,7 +101,7 @@ const pass = function(stats) {
   };
 };
 
-const fail = function(stats) {
+var fail = function(stats) {
   return function(test, err) {
     if (test.suite) {
       stats.suites = test.suite;
@@ -117,7 +116,7 @@ const fail = function(stats) {
   };
 };
 
-const pend = function(stats) {
+var pend = function(stats) {
   return function(test) {
     if (test.suite) {
       stats.suites = test.suite;
@@ -130,7 +129,7 @@ const pend = function(stats) {
   };
 };
 
-const epilogue = function(stats) {
+var epilogue = function(stats) {
   var fmt = '' + (color('bright pass', ' ')) + (color('green', ' %d passing')) + (color('light', ' (%s)'));
 
   console.log();
@@ -151,7 +150,7 @@ const epilogue = function(stats) {
   console.log();
 };
 
-const stop = function(stats) {
+var stop = function(stats) {
   return function() {
     stats.duration = Date.now() - stats.startTime;
     process.stdout.write(EOL);

@@ -1,16 +1,16 @@
 'use strict';
 
-const gutil = require('gulp-util');
+var gutil = require('gulp-util');
 
-const isTest = function() {
+var isTest = function() {
   return process.env.NODE_ENV === 'test';
 };
 
-const isProd = function() {
+var isProd = function() {
   return isTest() || process.env.NODE_ENV === 'production';
 };
 
-const errcb = function(err) {
+var errcb = function(err) {
   if (err) {
     gutil.log(gutil.colors.red(err.stack || err.message || err));
   }
@@ -24,7 +24,7 @@ const errcb = function(err) {
   }
 };
 
-const exitcb = function(err) {
+var exitcb = function(err) {
   errcb(err);
 
   if (!process.env.GULP_WATCH) {

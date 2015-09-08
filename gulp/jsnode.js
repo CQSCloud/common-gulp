@@ -1,9 +1,9 @@
 'use strict';
 
-const gulp = require('gulp');
-const babel = require('gulp-babel');
-const newer = require('gulp-newer');
-const path = require('path');
+var gulp = require('gulp');
+var babel = require('gulp-babel');
+var newer = require('gulp-newer');
+var path = require('path');
 
 module.exports = function(dest, src) {
   return gulp

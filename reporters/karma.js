@@ -1,10 +1,10 @@
 'use strict';
 
-const reporter = require('./reporter');
+var reporter = require('./reporter');
 
-const stats = {};
+var stats = {};
 
-const Reporter = function(baseReporterDecorator) {
+var Reporter = function(baseReporterDecorator) {
   baseReporterDecorator(this);
 
   this._browsers = [1];
@@ -20,7 +20,7 @@ const Reporter = function(baseReporterDecorator) {
   this.specFailure = function(browser, result) {
     result.message = result.log.join('');
 
-    const test = {
+    var test = {
       fullTitle: function() {
         return (result.suite.join(' > ')) + ' > ' + result.description;
       }

@@ -1,8 +1,8 @@
 'use strict';
 
-const reporter = require('./reporter');
+var reporter = require('./reporter');
 
-const stats = {};
+var stats = {};
 
 module.exports = function(runner) {
   runner.on('start', reporter.start(stats));
