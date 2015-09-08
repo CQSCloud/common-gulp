@@ -13,11 +13,3 @@ temp.js
 .cache-require-paths.json
 .coverrun
 .coverdata/
-/index.js
-!*/index.js
-gulp/
-!*/gulp/
-helpers/
-!*/helpers/
-reporters/
-!*/reporters/

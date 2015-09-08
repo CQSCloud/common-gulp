@@ -1,31 +1,31 @@
 'use strict';
 
-const gulp = require('gulp');
-const del = require('del');
-const _ = require('lodash');
-const serial = require('run-sequence');
-const path = require('path');
+var gulp = require('gulp');
+var del = require('del');
+var _ = require('lodash');
+var serial = require('run-sequence');
+var path = require('path');
 
-const common = {
-  bower: require('./gulp/bower'),
-  copy: require('./gulp/copy'),
-  coverage: require('./gulp/coverage'),
-  jade: require('./gulp/jade'),
-  jadelint: require('./gulp/jadelint'),
-  jsangular: require('./gulp/jsangular'),
-  jsconcat: require('./gulp/jsconcat'),
-  jslint: require('./gulp/jslint'),
-  jsnode: require('./gulp/jsnode'),
-  karma: require('./gulp/karma'),
-  mocha: require('./gulp/mocha')
+var common = {
+  bower: require('./bower'),
+  copy: require('./copy'),
+  coverage: require('./coverage'),
+  jade: require('./jade'),
+  jadelint: require('./jadelint'),
+  jsangular: require('./jsangular'),
+  jsconcat: require('./jsconcat'),
+  jslint: require('./jslint'),
+  jsnode: require('./jsnode'),
+  karma: require('./karma'),
+  mocha: require('./mocha')
 };
 
 gulp.task('bower', function() {
   return common.bower();
 });
 
-gulp.task('clean', function(cb) {
-  return del(['coverage', 'dist'], cb);
+gulp.task('clean', function(done) {
+  return del(['coverage', 'dist', '.cache-require-paths.json'], done);
 });
 
 gulp.task('copy-package.json', function() {
@@ -89,15 +89,15 @@ gulp.task('js-shared', ['jslint-shared'], function() {
 });
 
 gulp.task('js-vendor', ['bower'], function() {
-  const bowerrc = require(path.join(process.cwd(), 'bower.json'));
-  const bowersrc = _.map(bowerrc.dependencies, function(v, bowerdep) {
-    const main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
+  var bowerrc = require(path.join(process.cwd(), 'bower.json'));
+  var bowersrc = _.map(bowerrc.dependencies, function(v, bowerdep) {
+    var main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
     return _.map(_.isArray(main) ? main : [main], function(file) {
       return path.join('bower', bowerdep, file);
     });
   });
 
-  const src = [];
+  var src = [];
   _.forEach(_.flatten(bowersrc), function(s) {
     if (/\.js$/.test(s)) {
       if (/jquery/.test(s)) {
@@ -115,12 +115,12 @@ gulp.task('test-client', ['jslint-client-spec'], function(done) {
   return common.karma(done);
 });
 
-gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(cb) {
-  return common.mocha(cb, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
+gulp.task('test-server', ['jslint-server-spec', 'jslint-shared-spec'], function(done) {
+  return common.mocha(done, ['src/server/scripts/**/*.js', 'src/shared/scripts/**/*.js'], ['spec/server/**/*.spec.js', 'spec/server/**/*.spec.js']);
 });
 
-gulp.task('test', function(cb) {
-  return serial('test-server', 'test-client', 'coverage', cb);
+gulp.task('test', function(done) {
+  return serial('test-server', 'test-client', 'coverage', done);
 });
 
 module.exports = common;

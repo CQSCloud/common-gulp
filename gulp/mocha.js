@@ -1,14 +1,14 @@
 'use strict';
 
-const gulp = require('gulp');
-const mocha = require('gulp-mocha');
-const istanbul = require('gulp-istanbul');
-const isparta = require('isparta');
+var gulp = require('gulp');
+var mocha = require('gulp-mocha');
+var istanbul = require('gulp-istanbul');
+var isparta = require('isparta');
 
-const babel = require('babel-core/register');
-const reporter = require('../reporters').mocha;
+var babel = require('babel-core/register');
+var reporter = require('../reporters').mocha;
 
-const {exitcb} = require('../helpers');
+var exitcb = require('../helpers').exitcb;
 
 module.exports = function(cb, src, spec) {
   process.env.NODE_ENV = 'test';

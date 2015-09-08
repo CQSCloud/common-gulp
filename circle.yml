@@ -9,7 +9,3 @@ checkout:
     - git config --global user.email "development@cqscloud.com"
     - git config --global user.name "development"
     - git merge --no-edit origin/development
-
-dependencies:
-  pre:
-    - npm run install-globals

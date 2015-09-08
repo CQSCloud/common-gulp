@@ -1,12 +1,11 @@
 'use strict';
 
-const gulp = require('gulp');
-const replace = require('gulp-replace');
-const path = require('path');
-const lcovmerger = require('lcov-result-merger');
+var gulp = require('gulp');
+var replace = require('gulp-replace');
+var lcovmerger = require('lcov-result-merger');
 
 module.exports = function() {
-  const root = path.join(__dirname, '../../');
+  var root = process.cwd();
 
   return gulp
     .src(['coverage/*.lcov'])

@@ -1,7 +1,7 @@
 'use strict';
 
-const mocha = require('./mocha');
-const karma = require('./karma');
+var mocha = require('./mocha');
+var karma = require('./karma');
 
 module.exports = {
   mocha: mocha,
