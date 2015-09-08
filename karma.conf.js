@@ -14,7 +14,7 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-phantomjs-launcher',
       'karma-chai-plugins',
-      require('./reporters').karma
+      require('./lib/reporters').karma
     ],
 
     frameworks: [
