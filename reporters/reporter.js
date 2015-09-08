@@ -34,21 +34,21 @@ var COLORS = {
 };
 
 var color = function(type, str) {
-  return `\u001b[${COLORS[type]}m${str}\u001b[0m`;
+  return '\u001b[' + COLORS[type] + 'm' + str + '\u001b[0m';
 };
 
 var wrap = function(tick) {
-  return `${tick} `;
+  return tick + ' ';
 };
 
 var newline = function(info) {
-  return process.stdout.write(`${EOL}${PREFIX}${color('medium', info || '')} `);
+  return process.stdout.write(EOL + PREFIX + color('medium', info || '') + ' ');
 };
 
 var log = function(stats, ch) {
   if (stats.prevSuite !== stats.suites[0]) {
     stats.prevSuite = stats.suites[0];
-    newline(`                                  ${stats.prevSuite}`.slice(-SUITELEN));
+    newline(('                                  ' + stats.prevSuite).slice(-SUITELEN));
   }
 
   if (ch) {
