@@ -40,15 +40,15 @@ A number of default tasks are defined, these are visible in the `index.js` file.
     });
 
     // karma tests
-    gulp.task('test-client', function() {
+    gulp.task('test-client', function(done) {
       // no config, uses karma.conf.js in project root
-      return common.karma();
+      return common.karma(done);
     });
 
     // mocha tests
-    gulp.task('test-server', function(cb) {
+    gulp.task('test-server', function(done) {
       // done callback, source array, spec array
-      common.mocha(cb, [PATHS.js.server], [PATHS.spec.server]);
+      common.mocha(done, [PATHS.js.server], [PATHS.spec.server]);
     });
 
 
@@ -68,6 +68,12 @@ A number of default tasks are defined, these are visible in the `index.js` file.
 
 
 ### compilation
+
+    // sass compilation
+    gulp.task('css', function() {
+      // source array, include array (optional)
+      return common.sass([PATH.sass.client]);
+    });
 
     // jade compilation
     gulp.task('html', function() {

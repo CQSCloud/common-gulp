@@ -11,8 +11,6 @@ module.exports = function(config) {
     ],
 
     plugins: [
-      'karma-babel-preprocessor',
-      'karma-coverage',
       'karma-mocha',
       'karma-phantomjs-launcher',
       'karma-chai-plugins',
@@ -28,25 +26,11 @@ module.exports = function(config) {
     ],
 
     reporters: [
-      'coverage',
       'mpreporter'
     ],
 
     browsers: [
       'PhantomJS'
-    ],
-
-    preprocessors: {
-      'spec/**/*.js': ['babel']
-    },
-
-    reportSlowerThan: 1000,
-
-    coverageReporter: {
-      type: 'lcovonly',
-      dir: 'coverage/',
-      subdir: '.',
-      file: 'client.lcov'
-    }
+    ]
   });
 };

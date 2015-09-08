@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./gulp');
+module.exports = require('./lib/gulp');
