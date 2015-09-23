@@ -1,15 +1,9 @@
 {
-  "extends": "airbnb",
+  "extends": "common",
   "parser": "babel-eslint",
-  "env": {
-    "node": true
-  },
   "rules": {
-    "comma-dangle": [2, "never"],
-    "func-names": 0,
-    "indent": [2, 2, { "SwitchCase": 1 }],
     "no-var": 0,
-    "prefer-const": 0,
-    "strict": [0, "global"]
+    "prefer-arrow-callback": 0,
+    "prefer-const": 0
   }
 }
