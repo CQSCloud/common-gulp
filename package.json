@@ -32,7 +32,7 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
-    "isparta": "^3.5.3",
+    "isparta": "^4.0.0",
     "karma": "^0.13.9",
     "lcov-result-merger": "^1.0.2",
     "lodash": "^3.10.1",
