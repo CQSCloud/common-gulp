@@ -3,28 +3,10 @@ machine:
     NODE_ENV: test
   node:
     version: 0.12.6
-  timezone:
-    Africa/Johannesburg
-
-checkout:
-  post:
-    - git fetch
-    - git config --global user.email "development@cqscloud.com"
-    - git config --global user.name "development"
-    - if [ "$CIRCLE_BRANCH" != "master" ]; then git merge --no-edit origin/development; fi
-
-test:
-  override:
-    - if [ "$CIRCLE_BRANCH" != "master" ]; then npm run test; fi
+  timezone: Africa/Johannesburg
 
 deployment:
   testing:
     branch: development
     commands:
-      - git config branch.master.remote origin
-      - git config branch.master.merge refs/heads/master
-      - git add -A
-      - git commit --allow-empty -m "buildbot [ci skip]"
-      - git merge --no-edit -s ours -m "buildbot [ci skip]" origin/master
-      - git tag `date +"%y%m%d-%H%M%S"`
-      - git push --force --tags origin HEAD:master
+      - bash bin/push-master.sh
