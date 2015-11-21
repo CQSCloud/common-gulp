@@ -9,4 +9,4 @@ deployment:
   testing:
     branch: development
     commands:
-      - bash bin/push-master.sh
+      - gulp github-master
