@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint no-console:0, no-var:0, prefer-arrow-callback:0, prefer-template:0, vars-on-top:0 */
+/* eslint no-console:0, prefer-template:0, vars-on-top:0 */
 
 var tracker = require('pivotaltracker');
 var _ = require('lodash');
