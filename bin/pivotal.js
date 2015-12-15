@@ -59,7 +59,7 @@ var getPivotalStories = function(gitStories) {
 };
 
 var getGitStories = function(commits) {
-  var regex = /\[(Finishes|Fixes)\s+[#]{1,3}(\d+)\]/gi;
+  var regex = /\[(Finishes|Fixes|Fin|Fix)\s+[#]{1,3}(\d+)\]/gi;
   var stories = {};
 
   console.log('Evaluating', commits.length, 'git commits');
@@ -67,11 +67,12 @@ var getGitStories = function(commits) {
   _.forEach(commits, function(commit) {
     var match = regex.exec(commit);
 
-    if (match) {
+    while (match) {
       stories[match[2]] = {
         id: match[2],
         msg: commit
       };
+      match = regex.exec(commit);
     }
   });
 
