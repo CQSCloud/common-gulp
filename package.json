@@ -1,6 +1,6 @@
 {
   "name": "common-gulp",
-  "version": "1.0.0",
+  "version": "2016.0314.1008",
   "private": true,
   "scripts": {
     "test": "gulp default && gulp test"
