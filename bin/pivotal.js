@@ -77,8 +77,10 @@ var getGitStories = function(commits) {
 
   console.log('Found', Object.keys(stories).length, 'finishes/fixes git commits');
 
-  stories.forEach(function(story) {
-    console.log('--', story.id, story.msg);
+  Object.keys(stories).forEach(function(storyId) {
+    var story = stories[storyId];
+
+    console.log('--', storyId, story.msg);
   });
 
   getPivotalStories(stories);
