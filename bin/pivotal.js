@@ -3,27 +3,25 @@
 /* eslint no-console:0, prefer-template:0, vars-on-top:0 */
 
 var tracker = require('pivotaltracker');
-var _ = require('lodash');
+
+var pivotalProjects = process.env.PIVOTAL_PROJECT.split(',');
+var pivotalClient = new tracker.Client(process.env.PIVOTAL_TOKEN);
 
 var getPivotalStories = function(gitStories) {
-  var client = new tracker.Client(process.env.PIVOTAL_TOKEN);
+  var _deliverStory = function(projectId, storyId) {
+    var story = pivotalClient.project(projectId).story(storyId);
 
-  var _deliverStory = function(id) {
-    var story = client.project(process.env.PIVOTAL_PROJECT).story(id);
+    console.log('-- Updating pivotal story', storyId, 'comment');
 
-    console.log('-- Updating pivotal story', id, 'comment');
-    story.comments.create({
-      text: 'Deployed to staging, marked as delivered'
-    }, function(err) {
+    story.comments.create({ text: 'Deployed to staging, marked as delivered' }, function(err) {
       if (err) {
         console.error('ERROR: Pivotal comment', err);
         return;
       }
 
-      console.log('-- Marking pivotal story', id, 'as delivered');
-      story.update({
-        current_state: 'delivered'
-      }, function(err2) {
+      console.log('-- Marking pivotal story', storyId, 'as delivered');
+
+      story.update({ current_state: 'delivered' }, function(err2) {
         if (err2) {
           console.error('ERROR: Pivotal delivery', err2);
         }
@@ -31,31 +29,32 @@ var getPivotalStories = function(gitStories) {
     });
   };
 
-  console.log('Retrieving finished pivotal stories');
+  console.log('Retrieving pivotal stories');
 
-  client
-    .project(process.env.PIVOTAL_PROJECT)
-    .stories.all({
-      with_state: 'finished'
-    }, function(err, stories) {
-      if (err) {
-        console.error('ERROR: Pivotal query', err);
-        return;
-      }
+  pivotalProjects.forEach(function(projectId) {
+    console.log('Retrieving stories for project', projectId);
 
-      console.log('Found', stories.length, 'finished pivotal stories');
-      _.forEach(stories, function(story) {
-        console.log('--', story.id, story.currentState, story.name);
-      });
-
-      _.forEach(stories, function(story) {
-        var gitStory = gitStories['' + story.id];
-        if (gitStory) {
-          console.log('Found pivotal story', story, 'matching git commit', gitStory);
-          _deliverStory(story.id);
+    pivotalClient
+      .project(projectId)
+      .stories.all({ with_state: 'finished' }, function(err, stories) {
+        if (err) {
+          console.error('ERROR: Pivotal query', err);
+          return;
         }
+
+        console.log('Found', stories.length, 'finished pivotal stories');
+
+        stories.forEach(function(story) {
+          var gitStory = gitStories['' + story.id];
+
+          console.log('--', story.id, story.currentState, story.name);
+
+          if (gitStory) {
+            _deliverStory(projectId, story.id);
+          }
+        });
       });
-    });
+  });
 };
 
 var getGitStories = function(commits) {
@@ -64,7 +63,7 @@ var getGitStories = function(commits) {
 
   console.log('Evaluating', commits.length, 'git commits');
 
-  _.forEach(commits, function(commit) {
+  commits.forEach(function(commit) {
     var match = regex.exec(commit);
 
     while (match) {
@@ -77,7 +76,8 @@ var getGitStories = function(commits) {
   });
 
   console.log('Found', Object.keys(stories).length, 'finishes/fixes git commits');
-  _.forEach(stories, function(story) {
+
+  stories.forEach(function(story) {
     console.log('--', story.id, story.msg);
   });
 
