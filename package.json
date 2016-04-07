@@ -40,7 +40,7 @@
     "lodash": "^4.8.2",
     "mocha": "^2.4.5",
     "pivotaltracker": "^0.1.4",
-    "pug": "^2.0.0-alpha1",
+    "pug": "^0.1.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "yargs": "^4.4.0"
