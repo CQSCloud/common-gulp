@@ -1,5 +1,5 @@
 {
-  "extends": "common",
+  "extends": "./node_modules/eslint-config-common/.eslintrc.json",
   "parser": "babel-eslint",
   "rules": {
     "no-var": 0,
