@@ -25,7 +25,7 @@
     "gulp-ignore": "^2.0.1",
     "gulp-istanbul": "^0.10.4",
     "gulp-mocha": "^2.2.0",
-    "gulp-newer": "^1.1.0",
+    "gulp-newer": "^0.5.1",
     "gulp-ng-annotate": "^2.0.0",
     "gulp-pug": "^1.0.0",
     "gulp-pug-lint": "^0.1.6",
