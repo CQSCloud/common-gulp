@@ -1,10 +1,30 @@
 'use strict';
 
-var gulp = require('gulp');
-var common = require('./lib/gulp');
+const gulp = require('gulp');
+const serial = require('run-sequence');
+const common = require('./lib/gulp');
 
-gulp.task('lint', function() {
+gulp.task('lint', () => {
   return common.jslint(['./index.js', 'lib/**/*.js']);
 });
 
-gulp.task('default', ['lint']);
+gulp.task('css', () => {
+  return common.sass(['spec/compile/test/*.sass'], [], {
+    destDir: 'dist/',
+    destFile: 'test.css'
+  });
+});
+
+gulp.task('pug', () => {
+  return common.pug('dist/', ['spec/compile/test/*.jade']);
+});
+
+gulp.task('test-compile', (done) => {
+  return common.mocha(done, [], ['spec/compile/**/*.spec.js']);
+});
+
+gulp.task('test', (done) => {
+  return serial('test-server', 'test-client', 'test-compile', done);
+});
+
+gulp.task('default', ['lint', 'css', 'pug']);
