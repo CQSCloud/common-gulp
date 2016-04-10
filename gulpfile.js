@@ -9,7 +9,7 @@ gulp.task('lint', () => {
 });
 
 gulp.task('css', () => {
-  return common.sass(['spec/compile/test/*.sass'], [], {
+  return common.sass(['spec/compile/test/*.s?ss'], [], {
     destDir: 'dist/',
     destFile: 'test.css'
   });
