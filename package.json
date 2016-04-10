@@ -1,6 +1,6 @@
 {
   "name": "common-gulp",
-  "version": "1.0.0",
+  "version": "2016.0410.1435",
   "private": true,
   "scripts": {
     "test": "gulp clean && NODE_ENV=test gulp && gulp test"
