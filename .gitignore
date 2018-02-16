@@ -13,3 +13,4 @@ temp.js
 .cache-require-paths.json
 .coverrun
 .coverdata/
+.vs
