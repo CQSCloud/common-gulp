@@ -49,8 +49,41 @@ jobs:
         path: /tmp/circleci-artifacts
         path: /tmp/circleci-test-results
 
-# deployment:
-#   testing:
-#     branch: development
-#     commands:
-#       - gulp github-master
+  build-master:
+    working_directory: ~/CQSCloud/common-gulp
+    parallelism: 1
+    shell: /bin/bash --login
+    environment:
+      NODE_ENV: test
+      TZ: Africa/Johannesburg
+    docker:
+    # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    #   command: /sbin/init
+    - image: circleci/node:8-stretch-browsers
+    steps:
+    - checkout
+    # - run:
+    #     working_directory: ~/CQSCloud/common-gulp
+    #     command: nvm install 8.9.1 && nvm alias default 8.9.1
+    - restore_cache:
+        keys:
+        - v1-dep-{{ .Branch }}-
+        - v1-dep-development-
+
+    - run: npm install
+
+    - run: npm test
+
+    - run: gulp github-master
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - build-master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: development
