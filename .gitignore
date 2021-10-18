@@ -14,3 +14,4 @@ temp.js
 .coverrun
 .coverdata/
 .vs
+.audit.json

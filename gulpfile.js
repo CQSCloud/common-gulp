@@ -1,7 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
-const serial = require('run-sequence');
+// const serial = require('run-sequence');
 const common = require('./lib/gulp');
 
 gulp.task('lint', () => {
@@ -23,8 +23,10 @@ gulp.task('test-compile', (done) => {
   return common.mocha(done, [], ['spec/compile/**/*.spec.js']);
 });
 
-gulp.task('test', (done) => {
-  return serial('test-server', 'test-client', 'test-compile', done);
-});
+gulp.task('test', gulp.series('test-server', 'test-client', 'test-compile'));
 
-gulp.task('default', ['lint', 'css', 'pug']);
+// gulp.task('test', (done) => {
+//   return serial('test-server', 'test-client', 'test-compile', done);
+// });
+
+gulp.task('default', gulp.series('lint', 'css', 'pug'));
