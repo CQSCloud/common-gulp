@@ -12,7 +12,7 @@ jobs:
     docker:
     # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     #   command: /sbin/init
-    - image: circleci/node:8-stretch-browsers
+    - image: circleci/node:16-stretch-browsers-legacy
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
@@ -58,7 +58,7 @@ jobs:
     docker:
     # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     #   command: /sbin/init
-    - image: circleci/node:8-stretch-browsers
+    - image: circleci/node:16-stretch-browsers-legacy
     steps:
     - checkout
     # - run:
