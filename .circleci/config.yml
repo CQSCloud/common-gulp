@@ -12,7 +12,7 @@ jobs:
     docker:
     # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     #   command: /sbin/init
-    - image: circleci/node:8-stretch-browsers
+    - image: circleci/node:16-stretch-browsers-legacy
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
@@ -47,7 +47,6 @@ jobs:
         path: /tmp/circleci-test-results
     - store_artifacts:
         path: /tmp/circleci-artifacts
-        path: /tmp/circleci-test-results
 
   build-master:
     working_directory: ~/CQSCloud/common-gulp
@@ -59,7 +58,7 @@ jobs:
     docker:
     # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
     #   command: /sbin/init
-    - image: circleci/node:8-stretch-browsers
+    - image: circleci/node:16-stretch-browsers-legacy
     steps:
     - checkout
     # - run:
