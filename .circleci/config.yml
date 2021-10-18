@@ -47,7 +47,6 @@ jobs:
         path: /tmp/circleci-test-results
     - store_artifacts:
         path: /tmp/circleci-artifacts
-        path: /tmp/circleci-test-results
 
   build-master:
     working_directory: ~/CQSCloud/common-gulp
