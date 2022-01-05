@@ -69,38 +69,6 @@ class CommonRegistry extends DefaultRegistry {
       return common.pug('dist/public/', ['src/client/views/**/*.jade', 'src/client/views/**/*.pug']);
     });
 
-    gulp.task('jslint-admin', function() {
-      return common.jslint(['src/admin/scripts/**/*.js']);
-    });
-
-    gulp.task('jslint-client', function() {
-      return common.jslint(['src/client/scripts/**/*.js']);
-    });
-
-    gulp.task('jslint-client-spec', function() {
-      return common.jslint(['spec/client/**/*.js']);
-    });
-
-    gulp.task('jslint-database', function() {
-      return common.jslint(['src/database/**/*.js']);
-    });
-
-    gulp.task('jslint-server', function() {
-      return common.jslint(['src/server/scripts/**/*.js']);
-    });
-
-    gulp.task('jslint-server-spec', function() {
-      return common.jslint(['spec/server/**/*.js']);
-    });
-
-    gulp.task('jslint-shared', function() {
-      return common.jslint(['src/shared/scripts/**/*.js']);
-    });
-
-    gulp.task('jslint-shared-spec', function() {
-      return common.jslint(['spec/shared/**/*.js']);
-    });
-
     gulp.task('js-admin', function() {
       return common.jsangular('ncc1701.js', 'dist/public/scripts/', ['src/admin/scripts/**/*.js']);
     });

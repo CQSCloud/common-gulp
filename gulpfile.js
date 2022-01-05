@@ -19,4 +19,11 @@ module.exports = {
   uglify: require('./tasks/base/uglify'),
   lint: require('./tasks/lint'),
   jslintAdmin: require('./tasks/jslint-admin'),
+  jslintClient: require('./tasks/jslint-client'),
+  jslintClientSpec: require('./tasks/jslint-client-spec'),
+  jslintDatabase: require('./tasks/jslint-database'),
+  jslintServer: require('./tasks/jslint-server'),
+  jslintServerSpec: require('./tasks/jslint-server-spec'),
+  jslintShared: require('./tasks/jslint-shared'),
+  jslintSharedSpec: require('./tasks/jslint-shared-spec'),
 };
