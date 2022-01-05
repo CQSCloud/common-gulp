@@ -1,12 +1,11 @@
 'use strict';
 
-var gulp = require('gulp');
-var replace = require('gulp-replace');
-var lcovmerger = require('lcov-result-merger');
+const gulp = require('gulp');
+const replace = require('gulp-replace');
+const lcovmerger = require('lcov-result-merger');
 
-module.exports = function() {
-  var root = process.cwd();
-
+const task = () => {
+  const root = process.cwd();
   return gulp
     .src(['coverage/*.lcov'], { allowEmpty: true })
     .pipe(replace('SF:' + root, 'SF:')) // eslint-disable-line  prefer-template
@@ -14,3 +13,5 @@ module.exports = function() {
     .pipe(lcovmerger())
     .pipe(gulp.dest('coverage/'));
 };
+
+module.exports = task;

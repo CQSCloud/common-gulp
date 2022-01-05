@@ -4,9 +4,9 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 // var istanbul = require('gulp-istanbul');
 // var isparta = require('isparta');
-var reporter = require('../reporters').mocha;
+var reporter = require('../../lib/reporters').mocha;
 // var fs = require('fs');
-var exitcb = require('../helpers').exitcb;
+var exitcb = require('../lib/error-and-exit-callback');
 
 var runMocha = function(spec, options) {
   return gulp

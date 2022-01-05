@@ -1,11 +1,13 @@
 'use strict';
 
-var gulp = require('gulp');
-var eslint = require('gulp-eslint');
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
 
-module.exports = function(src, opt) {
+const task =  (src, opt) => {
   return gulp
     .src(src, { allowEmpty: true })
     .pipe(eslint(opt || {}))
     .pipe(eslint.format());
 };
+
+module.exports = task;

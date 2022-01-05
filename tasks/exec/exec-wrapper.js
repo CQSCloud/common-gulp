@@ -2,18 +2,18 @@
 
 /* eslint no-console:0 */
 
-var exec = require('child_process').exec;
+const { exec } = require('child_process');
 
-var _nonewline = function(str) {
+const _nonewline = (str) => {
   return str.replace(/\n/, '').replace(/\r/, '');
 };
 
-module.exports = function(cmd, done) {
-  var proc = exec(cmd, function(error) {
+const task = (cmd, cb) => {
+  var proc = exec(cmd, (error) => {
     if (error) {
       console.error(error);
     }
-    done(error);
+    cb(error);
   });
 
   proc.stdout.on('data', function(data) {
@@ -24,3 +24,5 @@ module.exports = function(cmd, done) {
     console.error(_nonewline(data));
   });
 };
+
+module.exports = task;

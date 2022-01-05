@@ -1,4 +1,20 @@
-const { registry } = require('gulp');
-const CommonRegistry = require('./registry');
-
-registry(new CommonRegistry());
+module.exports = {
+  awsebdeploy: require('./tasks/exec/exec-aws-deploy-eb'),
+  bower: require('./tasks/base/bower'),
+  copyPackageJson: require('./tasks/copy-package-json'),
+  clean: require('./tasks/clean'),
+  coverage: require('./tasks/base/coverage'),
+  githubmaster: require('./tasks/exec/exec-github-master'),
+  jsangular: require('./tasks/base/jsangular'),
+  jsconcat: require('./tasks/base/jsconcat'),
+  jslint: require('./tasks/base/jslint'),
+  jsnode: require('./tasks/base/jsnode'),
+  mocha: require('./tasks/base/mocha'),
+  pug: require('./tasks/base/pug'),
+  puglint: require('./tasks/base/puglint'),
+  puglintClient: require('./tasks/puglint-client'),
+  karma: require('./tasks/base/start-karma'),
+  pivotal: require('./tasks/exec/exec-pivotal'),
+  sass: require('./tasks/base/transpile-sass'),
+  uglify: require('./tasks/base/uglify')
+};
