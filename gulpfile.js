@@ -28,4 +28,7 @@ module.exports = {
   jslintSharedSpec: require('./tasks/jslint-shared-spec'),
   jsAdmin: require('./tasks/js-admin'),
   jsClient: require('./tasks/js-client'),
+  jsDatabase: require('./tasks/js-database'),
+  jsServer: require('./tasks/js-server'),
+  jsShared: require('./tasks/js-shared'),
 };

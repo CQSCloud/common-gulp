@@ -69,18 +69,6 @@ class CommonRegistry extends DefaultRegistry {
       return common.pug('dist/public/', ['src/client/views/**/*.jade', 'src/client/views/**/*.pug']);
     });
 
-    gulp.task('js-database', function() {
-      return common.jsnode('dist/database/', ['src/database/**/*.js']);
-    });
-
-    gulp.task('js-server', function() {
-      return common.jsnode('dist/', ['src/server/scripts/**/*.js']);
-    });
-
-    gulp.task('js-shared', function() {
-      return common.jsnode('dist/shared/', ['src/shared/scripts/**/*.js']);
-    });
-
     gulp.task('js-vendor', gulp.series('bower', function() {
       var bowerrc = require(path.join(process.cwd(), 'bower.json'));
       var bowersrc = _.map(bowerrc.dependencies, function(ver, bowerdep) {
