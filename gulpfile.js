@@ -16,5 +16,7 @@ module.exports = {
   karma: require('./tasks/base/start-karma'),
   pivotal: require('./tasks/exec/exec-pivotal'),
   sass: require('./tasks/base/transpile-sass'),
-  uglify: require('./tasks/base/uglify')
+  uglify: require('./tasks/base/uglify'),
+  lint: require('./tasks/lint'),
+  jslintAdmin: require('./tasks/jslint-admin'),
 };
