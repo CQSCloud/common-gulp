@@ -40,4 +40,6 @@ module.exports = {
   test: require('./tasks/test'),
   testParallelClientServer: require('./tasks/test-parallel-client-server'),
   testParallel: require('./tasks/test-parallel'),
+  css: require('./tasks/css'),
+  testCompile: require('./tasks/test-compile'),
 };
