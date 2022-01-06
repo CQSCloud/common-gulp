@@ -31,4 +31,13 @@ module.exports = {
   jsDatabase: require('./tasks/js-database'),
   jsServer: require('./tasks/js-server'),
   jsShared: require('./tasks/js-shared'),
+  jsVendor: require('./tasks/js-vendor'),
+  testClientPrereq: require('./tasks/test-client-prereq'),
+  testClient: require('./tasks/test-client'),
+  testServerPrereq: require('./tasks/test-server-prereq'),
+  testTsServer: require('./tasks/test-ts-server'),
+  testServer: require('./tasks/test-server'),
+  test: require('./tasks/test'),
+  testParallelClientServer: require('./tasks/test-parallel-client-server'),
+  testParallel: require('./tasks/test-parallel'),
 };
