@@ -6,7 +6,7 @@ const cssmin = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const newer = require('gulp-newer');
 
-const { isProduction } = require('./lib/is-env');
+const { isProduction } = require('../lib/is-env');
 
 const task = (file, src) => {
   return gulp.src(src, { allowEmpty: true })
