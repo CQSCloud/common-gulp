@@ -8,7 +8,7 @@ var reporter = require('../../lib/reporters').mocha;
 // var fs = require('fs');
 var exitcb = require('../lib/error-and-exit-callback');
 
-var runMocha = function(spec, options) {
+var runMocha = (spec, options) => {
   return gulp
     .src(spec, { allowEmpty: true })
     .pipe(mocha(options || {
@@ -22,7 +22,7 @@ var runMocha = function(spec, options) {
     }));
 };
 
-module.exports = function(cb, src, spec, _options) {
+module.exports = (cb, src, spec, _options) => {
   var options = _options || {};
 
   require('@babel/register');
@@ -40,7 +40,7 @@ module.exports = function(cb, src, spec, _options) {
     //   instrumenter: isparta.Instrumenter
     // }))
     // .pipe(istanbul.hookRequire())
-    .on('finish', function() {
+    .on('finish', () => {
       runMocha(spec, options.mocha)
         // .pipe(istanbul.writeReports({
         //   dir: './coverage',
@@ -52,7 +52,7 @@ module.exports = function(cb, src, spec, _options) {
         //     }
         //   }
         // }))
-        .on('end', function() {
+        .on('end', () => {
           cb();
         });
     })

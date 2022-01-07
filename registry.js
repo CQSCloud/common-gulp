@@ -32,27 +32,9 @@ class CommonRegistry extends DefaultRegistry {
       sass: require('./lib/gulp/sass'),
       uglify: require('./lib/gulp/uglify')
     };
-
-    gulp.task('coveralls', function(done) {
-      return common.coveralls(done);
-    });
-
-    gulp.task('github-master', function(done) {
-      return common.githubmaster(done);
-    });
-
-    gulp.task('puglint-client', function() {
-      return common.puglint(['src/client/views/**/*.jade', 'src/client/views/**/*.pug']);
-    });
-
-    gulp.task('html-client', function() {
-      return common.pug('dist/public/', ['src/client/views/**/*.jade', 'src/client/views/**/*.pug']);
-    });
     // gulp.task('test', (done) => {
     //   return serial('test-server', 'test-client', 'test-compile', done);
     // });
-
-    gulp.task('default', gulp.series('lint', 'css', 'pug'));
   }
 }
 module.exports = CommonRegistry;

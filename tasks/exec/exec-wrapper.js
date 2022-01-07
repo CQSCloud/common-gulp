@@ -16,11 +16,11 @@ const task = (cmd, cb) => {
     cb(error);
   });
 
-  proc.stdout.on('data', function(data) {
+  proc.stdout.on('data', (data) => {
     console.log(_nonewline(data));
   });
 
-  proc.stderr.on('data', function(data) {
+  proc.stderr.on('data', (data) => {
     console.error(_nonewline(data));
   });
 };

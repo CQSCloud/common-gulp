@@ -2,17 +2,17 @@
 const gulp = require('gulp');
 
 const task = () => {
-    return gulp.series('bower', function() {
+    return gulp.series('bower', () => {
         const bowerrc = require(path.join(process.cwd(), 'bower.json'));
-        const bowersrc = _.map(bowerrc.dependencies, function(ver, bowerdep) {
+        const bowersrc = _.map(bowerrc.dependencies, (ver, bowerdep) => {
             const main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
-            return _.map(_.isArray(main) ? main : [main], function(file) { // eslint-disable-line no-ternary
+            return _.map(_.isArray(main) ? main : [main], (file) => { // eslint-disable-line no-ternary
                 return path.join('bower', bowerdep, file);
             });
         });
 
         let sources = [];
-        _.forEach(_.flatten(bowersrc), function(src) {
+        _.forEach(_.flatten(bowersrc), (src) => {
             if (/\.js$/.test(src)) {
                 if (/jquery/.test(src)) {
                     sources.unshift(src);
@@ -23,7 +23,7 @@ const task = () => {
         });
 
         return jsConcat('dist/database/', ['src/database/**/*.js']);
-    })
+    });
 }
 
 module.exports = task;

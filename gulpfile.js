@@ -42,4 +42,7 @@ module.exports = {
   testParallel: require('./tasks/test-parallel'),
   css: require('./tasks/css'),
   testCompile: require('./tasks/test-compile'),
+  coveralls: require('./tasks/coveralls'),
+  htmlClient: require('./tasks/html-client'),
+  default: require('./tasks/default'),
 };
