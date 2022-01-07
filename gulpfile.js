@@ -44,5 +44,5 @@ module.exports = {
   testCompile: require('./tasks/test-compile'),
   coveralls: require('./tasks/coveralls'),
   htmlClient: require('./tasks/html-client'),
-  default: require('./tasks/default'),
+  default: require('./tasks/default')
 };
