@@ -1,5 +1,7 @@
 ﻿const jsConcat = require('./base/jsconcat');
 const gulp = require('gulp');
+const path = require('path');
+const _ = require('lodash');
 
 const task = () => {
   return gulp.series('bower', () => {
