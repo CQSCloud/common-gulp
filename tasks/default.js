@@ -1,7 +1,6 @@
-﻿const gulp = require('gulp');
+﻿const { series } = require('gulp');
+const lint = require('./lint');
+const css = require('./css');
+const pugTest = require('./pug-test');
 
-const task = () => {
-  return gulp.series('lint', 'css', 'pug');
-};
-
-module.exports = task;
+module.exports = series(lint, css, pugTest);
