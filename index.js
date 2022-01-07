@@ -30,7 +30,7 @@ module.exports = {
   'karma': require('./tasks/base/start-karma'),
   'lint': require('./tasks/lint'),
   'mocha': require('./tasks/base/mocha'),
-  'pug': require('./tasks/base/pug'),
+  'pug': require('./tasks/pug-test'),
   'puglint': require('./tasks/base/puglint'),
   'puglint-client': require('./tasks/puglint-client'),
   'pivotal': require('./tasks/exec/exec-pivotal'),
