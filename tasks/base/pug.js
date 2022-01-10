@@ -7,7 +7,7 @@ const lint = require('gulp-pug-lint');
 const errorCallback = require('../lib/error-callback');
 const errorAndExitCallback = require('../lib/error-and-exit-callback');
 
-const pug = (dest, src) => gulp
+const task = (dest, src) => gulp
   .src(src, { allowEmpty: true })
   .pipe(newer({
     dest: dest,
@@ -18,4 +18,4 @@ const pug = (dest, src) => gulp
   .on('error', errorCallback)
   .pipe(gulp.dest(dest));
 
-module.exports = pug;
+module.exports = task;

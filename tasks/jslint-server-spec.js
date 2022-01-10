@@ -1,7 +1,10 @@
-﻿const jsLint =  require('./base/jslint');
+﻿const jslint =  require('./base/jslint');
 
 const task = () => {
-  return jsLint(['spec/server/**/*.js']);
+  return jslint(['spec/server/**/*.js']);
 };
+
+task.displayName = 'jslint-server-spec';
+task.description = 'Eslint Server Test Scripts';
 
 module.exports = task;

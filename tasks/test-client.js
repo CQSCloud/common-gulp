@@ -1,10 +1,7 @@
 ﻿const karma =  require('./base/start-karma');
-const gulp = require('gulp');
+const { series } = require('gulp');
+const testClientPrerequisites = require('./test-client-prereq');
 
-const task = () => {
-  return gulp.series('test-client-prereq', (done) => {
-    return karma(done);
-  });
-};
+const testClient = series(testClientPrerequisites, karma);
 
-module.exports = task;
+module.exports = testClient;

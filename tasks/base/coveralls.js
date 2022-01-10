@@ -10,4 +10,7 @@ const task = (done) => {
   exec(cmd, done);
 };
 
+task.displayName = 'coveralls';
+task.description = 'Run Coveralls';
+
 module.exports = task;

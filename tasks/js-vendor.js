@@ -28,4 +28,7 @@ const task = () => {
   });
 };
 
+task.displayName = 'js-vendor';
+task.description = 'Compile and Merge vendor scripts using bower';
+
 module.exports = task;

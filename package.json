@@ -3,7 +3,7 @@
   "version": "2.0.2",
   "private": true,
   "scripts": {
-    "test": "gulp clean && npx cross-env NODE_ENV=test && gulp && gulp test"
+    "test": "gulp clean && npx cross-env NODE_ENV=test && gulp && nyc gulp test"
   },
   "dependencies": {
     "@babel/core": "^7.15.8",

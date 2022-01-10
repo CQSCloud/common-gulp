@@ -1,5 +1,8 @@
 const pug = require('./base/pug');
 
-const pugTest = () => pug('dist/', ['spec/compile/test/*.jade']);
+const task = () => pug('dist/', ['spec/compile/test/*.jade']);
 
-module.exports = pugTest;
+task.displayName = 'pug';
+task.description = 'Compile Test Html from Pug Templates';
+
+module.exports = task;

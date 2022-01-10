@@ -1,7 +1,7 @@
-﻿const gulp = require('gulp');
+﻿const { series } = require('gulp');
+const jslintServerSpec = require('./jslint-server-spec');
+const jslintSharedSpec = require('./jslint-shared-spec');
 
-const task = () => {
-  return gulp.series('jslint-server-spec', 'jslint-shared-spec');
-};
+const task = series(jslintServerSpec, jslintSharedSpec);
 
 module.exports = task;

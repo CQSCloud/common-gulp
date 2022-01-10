@@ -36,4 +36,7 @@ const task = (file, dest, src) => {
     .pipe(gulp.dest(dest));
 };
 
+task.displayName = 'jsangular';
+task.description = 'Compile AngularJS using Babel, and Node. Uglify and Annotate if production. Generate Source Maps.';
+
 module.exports = task;

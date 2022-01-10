@@ -10,4 +10,7 @@ const task = (cb) => {
   exec(cmd, cb);
 };
 
+task.displayName = 'github-master';
+task.description = 'Execute bin/github-master.sh';
+
 module.exports = task;

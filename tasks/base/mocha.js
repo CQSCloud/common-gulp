@@ -4,11 +4,11 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 // var istanbul = require('gulp-istanbul');
 // var isparta = require('isparta');
-var reporter = require('../../lib/reporters').mocha;
+const reporter = require('../../lib/reporters').mocha;
 // var fs = require('fs');
-var exitcb = require('../lib/error-and-exit-callback');
+const exitcb = require('../lib/error-and-exit-callback');
 
-var runMocha = (spec, options) => {
+const runMocha = (spec, options) => {
   return gulp
     .src(spec, { allowEmpty: true })
     .pipe(mocha(options || {
@@ -22,8 +22,8 @@ var runMocha = (spec, options) => {
     }));
 };
 
-module.exports = (cb, src, spec, _options) => {
-  var options = _options || {};
+const task = (cb, src, spec, _options) => {
+  const options = _options || {};
 
   require('@babel/register');
   process.env.NODE_ENV = 'test';
@@ -36,22 +36,22 @@ module.exports = (cb, src, spec, _options) => {
   }
   gulp
     .src(localSrc, { allowEmpty: true })
-    // .pipe(istanbul({
-    //   instrumenter: isparta.Instrumenter
-    // }))
-    // .pipe(istanbul.hookRequire())
+  // .pipe(istanbul({
+  //   instrumenter: isparta.Instrumenter
+  // }))
+  // .pipe(istanbul.hookRequire())
     .on('finish', () => {
       runMocha(spec, options.mocha)
-        // .pipe(istanbul.writeReports({
-        //   dir: './coverage',
-        //   reporters: ['lcovonly'],
-        //   reportOpts: {
-        //     lcovonly: {
-        //       dir: './coverage',
-        //       file: 'server.lcov'
-        //     }
-        //   }
-        // }))
+      // .pipe(istanbul.writeReports({
+      //   dir: './coverage',
+      //   reporters: ['lcovonly'],
+      //   reportOpts: {
+      //     lcovonly: {
+      //       dir: './coverage',
+      //       file: 'server.lcov'
+      //     }
+      //   }
+      // }))
         .on('end', () => {
           cb();
         });
@@ -59,3 +59,7 @@ module.exports = (cb, src, spec, _options) => {
     .on('error', exitcb);
   return undefined;
 };
+
+task.displayName = 'mocha';
+
+module.exports = task;

@@ -1,13 +1,13 @@
 'use strict';
 
-const gulp = require('gulp');
+const { src, dest } = require('gulp');
 const newer = require('gulp-newer');
 
-const task = (dest, src) => {
-  return gulp
-    .src(src, { allowEmpty: true })
-    .pipe(newer(dest))
-    .pipe(gulp.dest(dest));
-};
+const task = (destination, source) => src(source, { allowEmpty: true })
+  .pipe(newer(destination))
+  .pipe(dest(destination));
+
+task.displayName = 'copy';
+task.description = 'Copy a src file to the destination specified';
 
 module.exports = task;

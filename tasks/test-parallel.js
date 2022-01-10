@@ -1,7 +1,9 @@
-﻿const gulp = require('gulp');
+﻿const { series } = require('gulp');
+const testParelellClientServer = require('./test-parallel-client-server');
+const coverage = require('./base/coverage');
 
 const task = () => {
-  return gulp.series('test-parallel-client-server', 'coverage');
+  return series(testParelellClientServer, coverage);
 };
 
 module.exports = task;

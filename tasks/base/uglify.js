@@ -17,4 +17,7 @@ const task = (file, dest, src) => {
     .pipe(gulp.dest(dest));
 };
 
+task.displayName = 'uglify';
+task.description = 'Annotate, Uglify and Bundle';
+
 module.exports = task;

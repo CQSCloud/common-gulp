@@ -28,4 +28,6 @@ const task = (dest, src) => {
     .pipe(gulp.dest(dest));
 };
 
+task.displayName = 'jsnode';
+
 module.exports = task;

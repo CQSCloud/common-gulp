@@ -1,8 +1,11 @@
 
 const del = require('del');
 
-const clean = (cb) => {
+const task = (cb) => {
   return del(['coverage', 'dist', '.cache-require-paths.json'], cb);
 };
 
-module.exports = clean;
+task.displayName = 'clean';
+task.description = 'Clean coverage/, dist/, .cache-require-paths.json';
+
+module.exports = task;

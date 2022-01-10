@@ -17,4 +17,6 @@ const task = (file, src) => {
     .pipe(gulp.dest('dist/public/scripts/'));
 };
 
+task.displayName = 'jsconcat';
+
 module.exports = task;

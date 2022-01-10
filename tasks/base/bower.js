@@ -9,4 +9,7 @@ const task = (dest) => {
     .pipe(gulp.dest(to));
 };
 
+task.displayName = 'bower';
+task.description = 'Run bower wrapper';
+
 module.exports = task;

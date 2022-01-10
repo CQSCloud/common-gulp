@@ -18,4 +18,6 @@ const task = (file, src) => {
     .pipe(gulp.dest('dist/public/styles/'));
 };
 
+task.displayName = 'cssconcat';
+
 module.exports = task;

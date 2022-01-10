@@ -12,4 +12,6 @@ const task = (cb, options) => {
     }, options || {}), cb).start();
 };
 
+task.displayName = 'karma';
+
 module.exports = task;

@@ -1,5 +1,8 @@
 ﻿const jsLint =  require('./base/jslint');
 
-const lint = () => jsLint(['./index.js', 'tasks/**/*.js']);
+const task = () => jsLint(['./index.js', 'tasks/**/*.js']);
 
-module.exports = lint;
+task.displayName = 'lint';
+task.description = 'Eslint Gulp Tasks';
+
+module.exports = task;

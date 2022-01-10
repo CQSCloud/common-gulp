@@ -9,4 +9,6 @@ const task = (src) => {
     .pipe(lint());
 };
 
+task.displayName = 'puglint';
+
 module.exports = task;

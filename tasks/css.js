@@ -1,6 +1,6 @@
 ﻿const sass = require('./base/transpile-sass');
 
-const css = () => sass(
+const task = () => sass(
   ['spec/compile/test/*.s?ss'],
   [],
   {
@@ -8,4 +8,7 @@ const css = () => sass(
     destFile: 'test.css'
   });
 
-module.exports = css;
+task.displayName = 'css';
+task.description = `${sass.description} to test.css`;
+
+module.exports = task;

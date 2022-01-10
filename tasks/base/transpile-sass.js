@@ -10,7 +10,7 @@ const sass = require('gulp-sass')(require('sass'));
 const errorCallback = require('../lib/error-callback');
 const { isProduction } = require('../lib/is-env');
 
-const transpileSass = (src, includePaths, _options) => {
+const task = (src, includePaths, _options) => {
   const options = _options || {};
   const destDir = options.destDir || 'dist/public/styles';
   const destFile = options.destFile || 'client.css';
@@ -36,4 +36,6 @@ const transpileSass = (src, includePaths, _options) => {
     .pipe(gulp.dest(destDir));
 };
 
-module.exports = transpileSass;
+task.displayName = 'sass';
+
+module.exports = task;

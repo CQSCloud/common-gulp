@@ -13,5 +13,7 @@ const task = () => {
     .pipe(lcovmerger())
     .pipe(gulp.dest('coverage/'));
 };
+task.displayName = 'coverage';
+task.description = 'Generate Coverage and merge to coverage/ directory';
 
 module.exports = task;
