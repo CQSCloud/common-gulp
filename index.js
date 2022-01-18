@@ -1,6 +1,6 @@
 module.exports = {
   'aws-deploy-eb': require('./tasks/exec/exec-aws-deploy-eb'),
-  'bower': require('./tasks/base/bower'),
+  'bower': require('./tasks/bower'),
   'copy-package.json': require('./tasks/copy-package-json'),
   'coverage': require('./tasks/base/coverage'),
   'clean': require('./tasks/clean'),
