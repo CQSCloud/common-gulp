@@ -14,50 +14,17 @@ const runMocha = (spec, options) => {
     .pipe(mocha(options || {
       reporter: reporter,
       timeout: 30000,
-      require: ['@babel/register'],
-      nyc: {
-        reportDir: './coverage'
-      },
-      output: 'result.log' // fs.createWriteStream('result.log', { flags: 'w' }) //
+      require: ['@babel/register']
     }));
 };
 
 const task = (cb, src, spec, _options) => {
   const options = _options || {};
-
+  console.log('\x1b[31m%s\x1b[0m', 'spec', spec);
+  console.log('\x1b[31m%s\x1b[0m', 'src', src);
   require('@babel/register');
   process.env.NODE_ENV = 'test';
-  if (true) { // options.noCoverage) {
-    return runMocha(spec, options.mocha);
-  }
-  let localSrc = 'src/**/*.js';
-  if (src && src.length > 0 && src !== '') {
-    localSrc = src;
-  }
-  gulp
-    .src(localSrc, { allowEmpty: true })
-  // .pipe(istanbul({
-  //   instrumenter: isparta.Instrumenter
-  // }))
-  // .pipe(istanbul.hookRequire())
-    .on('finish', () => {
-      runMocha(spec, options.mocha)
-      // .pipe(istanbul.writeReports({
-      //   dir: './coverage',
-      //   reporters: ['lcovonly'],
-      //   reportOpts: {
-      //     lcovonly: {
-      //       dir: './coverage',
-      //       file: 'server.lcov'
-      //     }
-      //   }
-      // }))
-        .on('end', () => {
-          cb();
-        });
-    })
-    .on('error', exitcb);
-  return undefined;
+  return runMocha(spec, options.mocha);
 };
 
 task.displayName = 'mocha';
