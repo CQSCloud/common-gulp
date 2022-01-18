@@ -44,5 +44,6 @@ module.exports = {
   '-test-parallel-': require('./tasks/test-parallel-client-server'),
   'test-parallel': require('./tasks/test-parallel'),
   'test-compile': require('./tasks/test-compile'),
-  'uglify': require('./tasks/base/uglify')
+  'uglify': require('./tasks/base/uglify'),
+  'test-self': require('./tasks/test-self')
 };
