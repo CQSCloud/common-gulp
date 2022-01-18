@@ -2,9 +2,10 @@
 const gulp = require('gulp');
 const path = require('path');
 const _ = require('lodash');
+const bower = require('./base/bower');
 
 const task = () => {
-  return gulp.series('bower', () => {
+  return gulp.series(bower, () => {
     const bowerrc = require(path.join(process.cwd(), 'bower.json'));
     const bowersrc = _.map(bowerrc.dependencies, (ver, bowerdep) => {
       const main = require(path.join(process.cwd(), 'bower', bowerdep, 'bower.json')).main;
