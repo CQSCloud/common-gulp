@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const eslint = require('gulp-eslint');
@@ -18,7 +17,7 @@ const task = (dest, src) => {
     .pipe(eslint.format())
     .pipe(gulpif(!isProduction(), sourcemaps.init()))
     .pipe(babel({
-      babelrc: path.join(process.cwd(), '.babelrc')
+      babelrc: true
     }))
     .on('error', errcb)
     .pipe(gulpif(!isProduction(), sourcemaps.write('.', {
