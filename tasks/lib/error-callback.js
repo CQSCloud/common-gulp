@@ -1,11 +1,12 @@
 const log = require('fancy-log');
-var util = require('util');
+const util = require('util');
+const colours = require('ansi-colors');
 
 const errorCallback = (error) => {
   if (error) {
-    // TODO: Look at a colours library to format this text all red, stay over for now is just a red emoji at the start
-    const inspection = util.inspect(error.stack || error.message || error, { colors: true, sorted: true });
-    log(`🟥 ${inspection}`);
+    log(`🟥 ${colours.red(
+      util.inspect(error.stack || error.message || error)
+    )}`);
   }
 
   if (process.env.GULP_WATCH || process.env.GULP_FAILSAFE) {
