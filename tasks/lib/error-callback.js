@@ -1,8 +1,12 @@
-const util = require('gulp-util');
+const log = require('fancy-log');
+const util = require('util');
+const colours = require('ansi-colors');
 
 const errorCallback = (error) => {
   if (error) {
-    util.log(util.colors.red(error.stack || error.message || error));
+    log(`🟥 ${colours.red(
+      util.inspect(error.stack || error.message || error)
+    )}`);
   }
 
   if (process.env.GULP_WATCH || process.env.GULP_FAILSAFE) {
