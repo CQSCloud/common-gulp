@@ -1,15 +1,15 @@
 'use strict';
 
-const _ = require('lodash');
 const path = require('path');
-const karma = require('karma');
+const { config, Server } = require('karma');
 
 const task = (cb, options) => {
-  new karma.Server(
-    _.merge({
-      configFile: path.join(process.cwd(), 'karma.conf.js'),
-      singleRun: true
-    }, options || {}), cb).start();
+  const karmaConfig = config.parseConfig(
+    path.join(process.cwd(), 'karma.conf.js'),
+    { promiseConfig: true, throwErrors: true },
+    options || {});
+  const server = new Server(karmaConfig, cb);
+  server.start();
 };
 
 task.displayName = 'karma';
