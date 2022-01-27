@@ -14,6 +14,6 @@ const task = () => {
     .pipe(gulp.dest('coverage/'));
 };
 task.displayName = 'coverage';
-task.description = 'Generate Coverage and merge to coverage/ directory';
+task.description = 'Merge Coverage to coverage/ directory';
 
 module.exports = task;
