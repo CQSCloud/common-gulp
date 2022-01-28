@@ -1,9 +1,0 @@
-{
-  "extends": "./node_modules/eslint-config-common/.eslintrc.json",
-  "parser": "@babel/eslint-parser",
-  "rules": {
-    "no-var": 0,
-    "prefer-arrow-callback": 0,
-    "prefer-const": 0
-  }
-}
