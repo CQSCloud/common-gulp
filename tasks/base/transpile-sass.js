@@ -5,7 +5,7 @@ const concat = require('gulp-concat');
 const cssmin = require('gulp-clean-css');
 const gulpif = require('gulp-if');
 const ignore = require('gulp-ignore');
-const sass = require('gulp-sass')(require('sass'));
+const sass = require('gulp-sass')(require('node-sass'));
 
 const errorCallback = require('../lib/error-callback');
 const { isProduction } = require('../lib/is-env');
