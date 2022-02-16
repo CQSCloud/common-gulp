@@ -1,6 +1,6 @@
 {
   "name": "common-gulp",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "test": "gulp clean && npx cross-env NODE_ENV=test && gulp && npx nyc --reporter=lcov gulp test-self",
