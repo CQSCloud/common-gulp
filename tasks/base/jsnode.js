@@ -7,11 +7,15 @@ const gulpif = require('gulp-if');
 const newer = require('gulp-newer');
 const sourcemaps = require('gulp-sourcemaps');
 const errcb = require('../lib/error-callback');
-const { isProduction } = require('../lib/is-env');
+const {
+  isProduction
+} = require('../lib/is-env');
 
 const task = (dest, src) => {
   return gulp
-    .src(src, { allowEmpty: true })
+    .src(src, {
+      allowEmpty: true
+    })
     .pipe(newer('' + dest)) // eslint-disable-line prefer-template
     .pipe(eslint({}))
     .pipe(eslint.format())
@@ -19,7 +23,10 @@ const task = (dest, src) => {
     .pipe(babel({
       babelrc: true
     }))
-    .on('error', errcb)
+    .on('error', (error) => {
+      console.log('jsNode Error:', error);
+      return errcb();
+    })
     .pipe(gulpif(!isProduction(), sourcemaps.write('.', {
       includeContent: false,
       destPath: dest
