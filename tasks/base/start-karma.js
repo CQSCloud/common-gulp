@@ -16,5 +16,3 @@ const task = (cb, options = {}) => {
 task.displayName = 'karma';
 
 module.exports = task;
-
-'use strict';
