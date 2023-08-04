@@ -76,4 +76,6 @@ workflows:
       - build-master:
           filters:
             branches:
-              only: development
+              only:
+                - development
+                - release/*
