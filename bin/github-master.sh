@@ -1,14 +1,17 @@
 #!/bin/bash
 
 # internal variables
-VERSION=`date +"%Y.%m%d.%H%M"`
+VERSION=$(date +"%Y.%m%d.%H%M")
 COMMIT="$VERSION [ci skip]"
 
-# setup master as our desitation
+# setup master as our destination
 git config --global user.email "buildbot@cqscloud.com"
 git config --global user.name "BuildBot"
 git config branch.master.remote origin
 git config branch.master.merge refs/heads/master
+
+# Change the remote URL to use HTTPS
+git remote set-url origin https://github.com/CQSCloud/common-cloud.git
 
 # setup files needed on master
 sed -i -e 's/dist\///' .gitignore
@@ -24,4 +27,4 @@ git merge --no-edit -s ours -m "$COMMIT" origin/master
 
 # tag release and push
 git tag $VERSION
-git push --force --tags origin HEAD:master
+git push --force --tags https://github.com/CQSCloud/common-cloud.git HEAD:master
